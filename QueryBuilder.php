@@ -165,4 +165,15 @@ class QueryBuilder extends AbstractQueryBuilder implements QueryBuilderInterface
     {
         return $this->db->query($this->toSQL())->fetch($fetchMode);
     }
+    
+    /**
+     * Fetch all data
+     * 
+     * @throws PDOException
+     * @return mixed
+     */
+    public function fetchAll($fetchMode = PDO::FETCH_ASSOC)
+    {
+        return $this->db->query($this->toSQL())->fetchAll($fetchMode);
+    }
 }

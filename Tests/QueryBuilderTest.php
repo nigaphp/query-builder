@@ -55,4 +55,16 @@ class QueryBuilderTest extends \PHPUnit\Framework\TestCase {
         $this->assertIsArray($q);
     }
     
+    
+    /**
+     * @test
+     */
+    public function fetchAll()
+    {
+        $q = $this->query
+                  ->from("product")
+                  ->fetchAll();
+        $this->assertIsArray($q);
+    }
+    
 }
