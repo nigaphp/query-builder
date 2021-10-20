@@ -15,5 +15,5 @@ namespace Nigatedev\Framework\QueryBuilder;
  *
  * @author Abass Ben Cheik <abass@todaysdev.com>
  */
-class QueryBuilderExceotion extends \Exception
+class QueryBuilderException extends \Exception
 {}
