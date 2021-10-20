@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Nigatedev\Framework\QueryBuilder;
+namespace Nigatedev\Framework\QueryBuilder\Exception;
 
 /**
  * App core exceptions
