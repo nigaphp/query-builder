@@ -12,7 +12,6 @@ declare(strict_types=1);
 
 namespace Nigatedev\Framework\QueryBuilder;
 
-use Nigatedev\FrameworkBundle\Database\Database;
 use PDO;
 
 /**
@@ -31,11 +30,13 @@ class QueryBuilder extends AbstractQueryBuilder implements QueryBuilderInterface
      */
     protected $key = [];
     
-    private Database $db;
+    private $db = null;
     
-    public function __construct(Database $db)
+    public function __construct(PDO $db = null)
     {
-        $this->db = $db;
+        if (!is_null($db)) {
+            $this->db = $db;
+        }
     }
 
     public function from(string $table): self
@@ -162,6 +163,6 @@ class QueryBuilder extends AbstractQueryBuilder implements QueryBuilderInterface
      */
     public function fetch($fetchMode = PDO::FETCH_ASSOC)
     {
-        return $this->db->getConnection()->query($this->toSQL())->fetch($fetchMode);
+        return $this->db->query($this->toSQL())->fetch($fetchMode);
     }
 }
