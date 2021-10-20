@@ -1,13 +1,19 @@
 <?php
 /*
- * This file is part of the Nigatedev PHP framework package
+ * This file is part of the Nigatedev framework package.
  *
  * (c) Abass Ben Cheik <abass@todaysdev.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
 declare(strict_types=1);
 
 namespace Nigatedev\Framework\QueryBuilder;
+
+use Nigatedev\FrameworkBundle\Database\Database;
+use PDO;
 
 /**
 * SQL QueryBuilder
@@ -24,12 +30,12 @@ class QueryBuilder extends AbstractQueryBuilder implements QueryBuilderInterface
      * @var mixed
      */
     protected $key = [];
-
-    public function selectAll(): self
+    
+    private Database $db;
+    
+    public function __construct(Database $db)
     {
-        $this->key["type"] = "select";
-        $this->key["fields"] = "*";
-        return $this;
+        $this->db = $db;
     }
 
     public function from(string $table): self
@@ -56,7 +62,10 @@ class QueryBuilder extends AbstractQueryBuilder implements QueryBuilderInterface
     public function select(...$fields): self
     {
         $this->key["type"] = "select";
-
+        
+        if (!$fields) {
+            $fields = ["*"];
+        }
         if (!is_array($fields[0])) {
             $this->key["fields"] = implode(", ", $fields);
         } else {
@@ -138,8 +147,21 @@ class QueryBuilder extends AbstractQueryBuilder implements QueryBuilderInterface
                 case "delete":
                     return $this->deleteQuery();
             }
+        } elseif (isset($this->key['table'])) {
+            return "SELECT * FROM {$this->key['table']}";
         } else {
-            throw new \Exception("ERRORS: Query builder can not built empty query");
+            throw new QueryBuilderException("ERRORS: Can't built empty query");
         }
+    }
+    
+    /**
+     * Fetch data
+     * 
+     * @throws PDOException
+     * @return mixed
+     */
+    public function fetch($fetchMode = PDO::FETCH_ASSOC)
+    {
+        return $this->db->getConnection()->query($this->toSQL())->fetch($fetchMode);
     }
 }
