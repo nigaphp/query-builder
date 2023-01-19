@@ -18,7 +18,7 @@ class QueryBuilderTest extends \PHPUnit\Framework\TestCase {
         ('Nokia 6310', 'Nokia 6310 (2021)'),
         ('Samsung Galaxy S10+', 'Samsung has once again topped the competition with the Galaxy S10+...');");
         
-        $this->query = new \Nigatedev\Framework\QueryBuilder\QueryBuilder($db);
+        $this->query = new \Niga\Framework\QueryBuilder\QueryBuilder($db);
     }
     
     /**

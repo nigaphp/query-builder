@@ -1,18 +1,20 @@
 {
-    "name": "nigatedev/query-builder",
-    "description": "Nigatedev framework SQL query builder",
+    "name": "niga/query-builder",
+    "description": "Niga framework SQL query builder",
     "type": "library",
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Nigatedev\\Framework\\QueryBuilder\\": ""
+            "Niga\\Framework\\QueryBuilder\\": ""
         }
     },
     "authors": [
-        {
-            "name": "Abass Ben Cheik",
-            "email": "cheikabassben@gmail.com"
-        }
+      {
+        "name": "Abass Dev",
+        "email": "abass@abassdev.com",
+        "role": "Lead Developer",
+        "homepage": "https://abassdev.com"
+      }
     ],
     "minimum-stability": "dev",
     "require-dev": {
