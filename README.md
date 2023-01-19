@@ -1,2 +1,1 @@
-# query-builder
-Nigatedev framework SQL query builder
+Niga framework SQL query builder
