@@ -1,5 +1,5 @@
 {
-    "name": "niga/query-builder",
+    "name": "nigaphp/query-builder",
     "description": "Niga framework SQL query builder",
     "type": "library",
     "license": "MIT",
